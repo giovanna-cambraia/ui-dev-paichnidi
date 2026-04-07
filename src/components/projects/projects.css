@@ -1,0 +1,752 @@
+/* ─────────────────────────────────────────
+   globals / reset
+───────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─────────────────────────────────────────
+   ROOT SHELL
+───────────────────────────────────────── */
+.cyber-root {
+  background: #0a0000;
+  color: #c0392b;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #3d0000;
+}
+
+/* ─────────────────────────────────────────
+   TOPBAR
+───────────────────────────────────────── */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f0000;
+  border-bottom: 1px solid #3d0000;
+  padding: 6px 14px;
+  height: 40px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.level-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border: 1px solid #7f1d1d;
+  padding: 2px 8px;
+}
+
+.level-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: #22c55e;
+  font-family: "Orbitron", monospace;
+}
+
+.level-label {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.coins {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #22c55e;
+  font-family: "Orbitron", monospace;
+}
+
+.coins-plus {
+  border: 1px solid #22c55e;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.coins-amount {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #6b7280;
+  font-size: 10px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.time-val {
+  color: #c0392b;
+  font-size: 11px;
+}
+
+/* ─────────────────────────────────────────
+   BODY LAYOUT
+───────────────────────────────────────── */
+.cyber-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────
+   SIDEBAR LEFT
+───────────────────────────────────────── */
+.sidebar-left {
+  width: 180px;
+  min-width: 180px;
+  background: #0a0000;
+  border-right: 1px solid #3d0000;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.avatar-frame {
+  border: 1px solid #7f1d1d;
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  background: #1a0000;
+}
+
+.avatar-frame::before,
+.avatar-frame::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #7f1d1d;
+  width: 14px;
+  height: 14px;
+}
+
+.avatar-frame::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.avatar-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7f1d1d;
+  font-size: 28px;
+  font-family: "Orbitron", monospace;
+  background: radial-gradient(circle at 50% 40%, #1f0a0a, #0a0000);
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 9px;
+  color: #4b5563;
+  letter-spacing: 0.1em;
+}
+
+.info-value {
+  font-size: 11px;
+  color: #c0392b;
+  font-family: "Orbitron", monospace;
+}
+
+.info-value.red {
+  color: #ef4444;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #7f1d1d;
+  padding: 3px 8px;
+  font-size: 10px;
+  color: #c0392b;
+  cursor: pointer;
+  background: #0f0000;
+}
+
+.pill.blue {
+  border-color: #1e3a5f;
+  color: #60a5fa;
+}
+
+.pill:hover {
+  background: #1a0000;
+}
+
+.x-icon,
+.bt-icon {
+  font-size: 10px;
+  color: #7f1d1d;
+}
+
+/* ─────────────────────────────────────────
+   MAIN CONTENT
+───────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page-title {
+  text-align: center;
+  padding: 10px;
+  font-family: "Orbitron", monospace;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: #c0392b;
+  border-bottom: 1px solid #1a0000;
+}
+
+.content-area {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  gap: 14px;
+}
+
+/* ─────────────────────────────────────────
+   DETAILS COLUMN
+───────────────────────────────────────── */
+.details-panel {
+  width: 210px;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─────────────────────────────────────────
+   SHARED CYBER PANEL
+───────────────────────────────────────── */
+.cyber-panel {
+  border: 1px solid #3d0000;
+  background: #0f0000;
+  position: relative;
+}
+
+.cyber-panel::before,
+.cyber-panel::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #c0392b;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.cyber-panel::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cyber-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #7f1d1d;
+  padding: 4px 8px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #fca5a5;
+}
+
+.panel-x {
+  color: #fca5a5;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.panel-body {
+  padding: 10px;
+}
+
+.panel-field-label {
+  font-size: 9px;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
+.panel-field-value {
+  font-family: "Orbitron", monospace;
+  color: #ef4444;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.panel-field-placeholder {
+  color: #6b2222;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* ─────────────────────────────────────────
+   TECHNOLOGIES HEX ICONS
+───────────────────────────────────────── */
+.tech-icons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.tech-hex {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #7f1d1d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c0392b;
+  font-size: 14px;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  background: #1a0000;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tech-hex:hover {
+  background: #2a0000;
+}
+
+/* ─────────────────────────────────────────
+   ABOUT PANEL
+───────────────────────────────────────── */
+.about-panel {
+  flex: 1;
+}
+
+.about-label {
+  padding: 6px 10px;
+  font-size: 10px;
+  color: #7f1d1d;
+  border-bottom: 1px solid #1a0000;
+}
+
+.about-text {
+  padding: 10px;
+  font-size: 9px;
+  color: #6b2222;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  padding: 0;
+}
+
+.expand-btn:hover {
+  color: #f87171;
+}
+
+/* ─────────────────────────────────────────
+   FILE EXPLORER
+───────────────────────────────────────── */
+.file-explorer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-explorer-header {
+  background: #7f1d1d;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #fca5a5;
+  letter-spacing: 0.15em;
+}
+
+.file-location {
+  background: #0a0000;
+  padding: 4px 10px;
+  font-size: 9px;
+  color: #4b5563;
+  border-bottom: 1px solid #1a0000;
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #1a0000;
+  border-right: 1px solid #1a0000;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.file-item:hover {
+  background: #1a0000;
+}
+
+.file-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #3d0000;
+  background: #1a0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7f1d1d;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-size: 9px;
+  color: #c0392b;
+  letter-spacing: 0.08em;
+}
+
+.file-size {
+  font-size: 8px;
+  color: #4b5563;
+  margin-top: 1px;
+}
+
+/* ─────────────────────────────────────────
+   ACTION BUTTONS
+───────────────────────────────────────── */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.action-btn {
+  border: 1px solid #7f1d1d;
+  background: transparent;
+  color: #c0392b;
+  padding: 6px 14px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.action-btn::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid #ef4444;
+  border-left: 1px solid #ef4444;
+  width: 8px;
+  height: 8px;
+}
+
+.action-btn:hover {
+  background: #1a0000;
+  color: #ef4444;
+}
+
+/* ─────────────────────────────────────────
+   SIDEBAR RIGHT
+───────────────────────────────────────── */
+.sidebar-right {
+  width: 175px;
+  min-width: 175px;
+  background: #0a0000;
+  border-left: 1px solid #3d0000;
+  display: flex;
+  flex-direction: column;
+}
+
+.quest-panel {
+  border-bottom: 1px solid #3d0000;
+  padding: 10px;
+  flex: 1;
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.quest-title-label {
+  font-size: 9px;
+  color: #4b5563;
+  letter-spacing: 0.1em;
+}
+
+.quest-x {
+  color: #7f1d1d;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.quest-skill-line {
+  display: block;
+  background: #7f1d1d;
+  padding: 2px 6px;
+  font-size: 8px;
+  color: #fca5a5;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.quest-name-label,
+.quest-goal-label,
+.quest-rewards-label {
+  font-size: 9px;
+  color: #4b5563;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.quest-name {
+  font-family: "Orbitron", monospace;
+  color: #ef4444;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.quest-goal-text {
+  font-size: 8px;
+  color: #7f1d1d;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.rewards-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.reward-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #7f1d1d;
+  padding: 4px 6px;
+  gap: 2px;
+  background: #0f0000;
+}
+
+.reward-icon {
+  font-size: 14px;
+}
+
+.reward-pts {
+  font-size: 8px;
+  color: #22c55e;
+}
+
+.settings-panel {
+  padding: 10px;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #1a0000;
+  font-size: 9px;
+  color: #6b7280;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.toggle-btn {
+  border: 1px solid #3d0000;
+  background: transparent;
+  color: #7f1d1d;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.toggle-btn.on {
+  border-color: #22c55e;
+  color: #22c55e;
+  background: #001a00;
+}
+
+.toggle-btn.gear {
+  border-color: #4b5563;
+  color: #4b5563;
+}
+
+.toggle-btn:hover {
+  border-color: #c0392b;
+}
+
+/* ─────────────────────────────────────────
+   BOTTOM TABS
+───────────────────────────────────────── */
+.bottom-bar {
+  display: flex;
+  border-top: 1px solid #3d0000;
+  background: #0a0000;
+  min-height: 56px;
+}
+
+.tab {
+  flex: 1;
+  border-right: 1px solid #3d0000;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.1s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tab:last-child {
+  border-right: none;
+}
+
+.tab:hover {
+  background: #0f0000;
+}
+
+.tab.active {
+  background: #1a0000;
+}
+
+.tab-name {
+  font-family: "Orbitron", monospace;
+  font-size: 9px;
+  color: #c0392b;
+  letter-spacing: 0.15em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab.active .tab-name {
+  color: #ef4444;
+}
+
+.tab-x {
+  color: #7f1d1d;
+  font-size: 9px;
+}
+
+.tab-preview {
+  font-size: 7px;
+  color: #3d1010;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d0000;
+}
