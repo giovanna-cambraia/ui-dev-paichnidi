@@ -3,7 +3,7 @@
 import React from "react";
 import { useState } from "react";
 
-const TABS = ["BEGINNING", "LOGS", "ACHIEVEMENTS", "CREATIONS", "GAMES"];
+const TABS = ["BEGINNING", "LOGS", "PROJECTS", "VISUALS", "ABOUT ME"];
 
 export default function HeroDashboard() {
   const [activeTab, setActiveTab] = useState("BEGINNING");
@@ -243,7 +243,6 @@ export default function HeroDashboard() {
           color: #080808;
           font-weight: 900;
           text-transform: uppercase;
-          width: fit-content;
         }
 
         .pill .x-icon {
@@ -320,29 +319,7 @@ export default function HeroDashboard() {
           text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
-        /* placeholder for user's future animal image */
-        .image-placeholder {
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(ellipse at 50% 70%, #2d0020 0%, #100015 40%, #080808 80%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          gap: 12px;
-          position: relative;
-        }
-
-        .image-placeholder .ph-icon {
-          font-size: 64px;
-          opacity: 0.4;
-        }
-
-        .image-placeholder .ph-text {
-          font-size: 8px;
-          letter-spacing: 0.3em;
-          text-transform: uppercase;
-        }
+    
 
         /* bracket decorations on image corners */
         .img-corner {
@@ -605,6 +582,22 @@ export default function HeroDashboard() {
           color: #FFFFFF;
           text-transform: uppercase;
           line-height: 1.6;
+        }  
+
+        .image-placeholder {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        }
+
+        .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        }
+
         }
       `}</style>
 
@@ -703,8 +696,12 @@ export default function HeroDashboard() {
               </div>
 
               <div className="image-placeholder">
-                <span className="ph-icon">🐋</span>
-                <span className="ph-text">IMAGE AREA</span>
+                <img 
+                src="hero-img.jpg" 
+                alt="" 
+                className="hero-image"
+                />
+                  <div className="particles" />
               </div>
             </div>
           </div>
