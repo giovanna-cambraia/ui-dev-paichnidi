@@ -3,16 +3,24 @@
 import DecryptedText from "@/src/react-components/decrypted/DecryptedText";
 import { useEffect, useState } from "react";
 
+interface LogsCenterProps {
+  entries: any[];
+  olderLogs: any[];
+  expanded: Record<string, boolean>;
+  toggleExpand: (key: string) => void;
+  onPreviewVisuals: () => void;
+}
+
 export default function LogsCenter({
   entries,
   olderLogs,
   expanded,
   toggleExpand,
-}: any) {
+  onPreviewVisuals,
+}: LogsCenterProps) {
   const [hoveredLog, setHoveredLog] = useState(null);
 
   useEffect(() => {
-    // Add console log for dramatic effect
     console.log(
       "%cDATA LOG DUMP INITIALIZED",
       "color: #e84a4a; font-size: 16px; font-family: monospace;",
@@ -89,7 +97,7 @@ export default function LogsCenter({
             })}
           </div>
 
-          <button className="log-visual-btn">
+          <button className="log-visual-btn" onClick={onPreviewVisuals}>
             PREVIEW VISUAL RECORDS &nbsp; ▣
           </button>
         </div>

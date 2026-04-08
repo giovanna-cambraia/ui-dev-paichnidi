@@ -3,12 +3,13 @@
 import ASCIIText from "@/src/react-components/ascii/ASCIIText";
 import React, { useState } from "react";
 
-// components
 import TopBar from "../reusable/TopBar";
 import SidebarLeft from "../reusable/SidebarLeft";
 import SidebarRight from "../reusable/SidebarRight";
 import BottomTabs from "../reusable/BottomTabs";
 import LogsCenter from "./LogsCenter";
+import LetterGlitch from "@/src/react-components/letter-glitch/LetterGlitch";
+
 import "./logs.css";
 import "../reusable/reusable.css";
 
@@ -17,7 +18,14 @@ interface LogsProps {
   setActiveTab: (tab: string) => void;
 }
 
-const TABS = ["BEGINNING", "LOGS", "PROJECTS", "VISUALS", "ABOUT ME",  "CONTACT"];
+const TABS = [
+  "BEGINNING",
+  "LOGS",
+  "PROJECTS",
+  "VISUALS",
+  "ABOUT ME",
+  "CONTACT",
+];
 
 const LOG_ENTRIES = [
   {
@@ -64,6 +72,7 @@ export default function LogsDashboard({ activeTab, setActiveTab }: LogsProps) {
   const [soundEffects, setSoundEffects] = useState(true);
   const [music, setMusic] = useState(false);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [showRestricted, setShowRestricted] = useState(false);
 
   const toggleExpand = (sectionKey: string) => {
     setExpanded((prev) => ({
@@ -87,6 +96,7 @@ export default function LogsDashboard({ activeTab, setActiveTab }: LogsProps) {
           olderLogs={OLDER_LOGS}
           expanded={expanded}
           toggleExpand={toggleExpand}
+          onPreviewVisuals={() => setShowRestricted(true)}
         />
 
         {/* RIGHT */}
@@ -104,6 +114,22 @@ export default function LogsDashboard({ activeTab, setActiveTab }: LogsProps) {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
+
+      {showRestricted && (
+        <div className="restricted-overlay">
+          <LetterGlitch
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true} glitchColors={[]} characters={""}          />
+
+          <div className="restricted-content">
+            <ASCIIText text="ACCESS_RESTRICTED" />
+
+            <button onClick={() => setShowRestricted(false)}>CLOSE</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

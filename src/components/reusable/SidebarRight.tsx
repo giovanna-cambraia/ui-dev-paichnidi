@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/src/contexts/LanguageContext";
+import "./reusable.css"
 import "./languageswitcher.css"
 
 interface Props {
