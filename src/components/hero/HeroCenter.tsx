@@ -8,8 +8,15 @@ import SidebarRight from "../reusable/SidebarRight";
 import HeroCenter from "./HeroCenter";
 import BottomTabs from "../reusable/BottomTabs";
 
-export default function HeroDashboard() {
-  const [activeTab, setActiveTab] = useState("BEGINNING");
+import "./hero.css";
+import "../reusable/reusable.css";
+
+interface DashboardProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+export default function HeroDashboard({ activeTab, setActiveTab }: DashboardProps) {
   const [soundEffects, setSoundEffects] = useState(true);
   const [music, setMusic] = useState(false);
 
@@ -19,7 +26,9 @@ export default function HeroDashboard() {
 
       <div className="dashboard-inner">
         <SidebarLeft />
-        <HeroCenter />
+        <HeroCenter activeTab={""} setActiveTab={function (tab: string): void {
+          throw new Error("Function not implemented.");
+        } } />
         <SidebarRight
           soundEffects={soundEffects}
           setSoundEffects={setSoundEffects}

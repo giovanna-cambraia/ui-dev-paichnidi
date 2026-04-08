@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap");
+
+:root {
+  --bg-main: #08080f;
+  --bg-deep: #050508;
+
+  --primary: #8b5cf6;
+  --primary-soft: #a78bfa;
+  --secondary: #38bdf8;
+
+  --text-main: #e5e7eb;
+  --text-dim: #a1a1aa;
+  --success: #22c55e;
+}
+
+/* ── Shell ── */
+.visuals-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: transparent;
+  overflow: hidden;
+  font-family: "Share Tech Mono", monospace;
+  text-transform: uppercase;
+  color: var(--primary-soft);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.visuals-title {
+  text-align: center;
+  font-family: "Orbitron", monospace;
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--primary-soft);
+  padding: 12px 0 10px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+  flex-shrink: 0;
+  position: relative;
+  animation: glitchText 3s infinite;
+  text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+}
+
+@keyframes glitchText {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+  95%,
+  97% {
+    text-shadow:
+      -2px 0 var(--primary),
+      2px 0 var(--success);
+    transform: skew(0.5deg);
+  }
+}
+
+/* ── Carousel area ── */
+.visuals-carousel-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Stage ── */
+.carousel-stage-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  perspective: 1500px;
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Card (Bigger size) ── */
+.vis-card {
+  position: absolute;
+  width: 450px;
+  height: 480px;
+  border: 1px solid var(--primary);
+  background: linear-gradient(135deg, #0f0000, #050000);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  flex-shrink: 0;
+  will-change: transform, opacity;
+}
+
+.vis-card:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary);
+}
+
+/* Corner brackets */
+.vis-card::before,
+.vis-card::after {
+  content: "";
+  position: absolute;
+  border: 1px solid var(--primary-soft);
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.vis-card::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.vis-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.vis-card:hover::before,
+.vis-card:hover::after {
+  width: 25px;
+  height: 25px;
+  border-color: var(--primary);
+}
+
+.vis-card-published {
+  padding: 10px 15px;
+  font-size: 9px;
+  color: #888;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+  letter-spacing: 0.15em;
+  background: #0a0000;
+  font-family: monospace;
+}
+
+/* Image area */
+.vis-card-img {
+  flex: 1;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.vis-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.vis-card:hover .vis-card-img img {
+  transform: scale(1.05);
+}
+
+.vis-card-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--primary);
+  font-size: 12px;
+  letter-spacing: 3px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.vis-card-img-placeholder::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.vis-card:hover .vis-card-img-placeholder::before {
+  left: 100%;
+}
+
+.vis-card-img-placeholder-icon {
+  font-size: 64px;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.vis-card:hover .vis-card-img-placeholder-icon {
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
+/* View live button */
+.vis-card-view-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border: 1px solid var(--primary);
+  color: var(--primary-soft);
+  padding: 8px 16px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+}
+
+.vis-card-view-btn:hover {
+  background: transparent;
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+/* ── Arrow buttons ── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  width: 50px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  font-family: monospace;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-arrow:hover {
+  border-color: var(--primary-soft);
+  color: var(--primary);
+  background: #6b24dd;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow-left {
+  left: 20px;
+}
+
+.carousel-arrow-right {
+  right: 20px;
+}
+
+/* ── Info block below carousel ── */
+.visuals-info {
+  width: 100%;
+  max-width: 500px;
+  padding: 25px 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: center;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visuals-info-name {
+  font-family: "Orbitron", monospace;
+  font-size: 16px;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.visuals-info-name:hover {
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  letter-spacing: 0.15em;
+}
+
+.visuals-info-subtitle {
+  font-size: 11px;
+  color: var(--primary);
+  letter-spacing: 0.2em;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.visuals-info-desc {
+  font-size: 10px;
+  color: var(--primary-soft);
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.visuals-info-desc:hover {
+  color: var(--primary-soft);
+}
+
+/* ── Progress bar ── */
+.visuals-progress {
+  width: 100%;
+  max-width: 450px;
+  align-self: center;
+  margin-top: 20px;
+  height: 4px;
+  background: transparent;
+  position: relative;
+  border: 1px solid var(--primary);
+  overflow: hidden;
+}
+
+.visuals-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-soft), var(--primary));
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.visuals-progress-fill::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--primary);
+}
+
+/* ── Counter ── */
+.visuals-counter {
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 3px;
+  margin-top: 10px;
+  font-family: monospace;
+  transition: all 0.3s ease;
+}
+
+.visuals-counter:hover {
+  color: var(--primary-soft);
+  letter-spacing: 4px;
+}
+
+/* Scrollbar styling */
+.visuals-center::-webkit-scrollbar {
+  width: 6px;
+}
+
+.visuals-center::-webkit-scrollbar-track {
+  background: #0a0000;
+}
+
+.visuals-center::-webkit-scrollbar-thumb {
+  background: var(--primary-soft);
+  border-radius: 3px;
+}
+
+.visuals-center::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-soft);
+}

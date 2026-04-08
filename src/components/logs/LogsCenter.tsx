@@ -1,17 +1,27 @@
 "use client";
 
 import DecryptedText from "@/src/react-bits/decrypted/DecryptedText";
+import { useEffect, useState } from "react";
 
 export default function LogsCenter({
-  ASCIIText,
   entries,
   olderLogs,
   expanded,
   toggleExpand,
 }: any) {
+  const [hoveredLog, setHoveredLog] = useState(null);
+
+  useEffect(() => {
+    // Add console log for dramatic effect
+    console.log(
+      "%cDATA LOG DUMP INITIALIZED",
+      "color: #e84a4a; font-size: 16px; font-family: monospace;",
+    );
+  }, []);
+
   return (
     <div className="center">
-      <p className="logs-dump-header">
+      <div className="logs-dump-header">
         <div style={{ marginTop: "4rem" }}>
           <div style={{ marginTop: "4rem" }}>
             <DecryptedText
@@ -20,13 +30,19 @@ export default function LogsCenter({
               revealDirection="start"
               sequential
               useOriginalCharsOnly={false}
+              onAnimationComplete={() => console.log("Decryption complete")}
             />
           </div>
         </div>
-      </p>
+      </div>
 
       {entries.map((entry: any) => (
-        <div key={entry.id} className="active-log-entry">
+        <div
+          key={entry.id}
+          className="active-log-entry"
+          onMouseEnter={() => setHoveredLog(entry.id)}
+          onMouseLeave={() => setHoveredLog(null)}
+        >
           <div className="log-entry-header">
             <span className="log-entry-title">LOG ENTRY: {entry.title}</span>
             <span className="log-entry-date">{entry.date}</span>
@@ -44,19 +60,28 @@ export default function LogsCenter({
           <div className="log-sections-grid">
             {entry.sections.map((section: any, i: number) => {
               const key = `${entry.id}-${i}`;
+              const isExpanded = expanded[key];
 
               return (
                 <div key={i} className="log-section">
-                  <div className="log-section-heading">{section.heading}</div>
+                  <div className="log-section-heading">
+                    {section.heading}
+                    {isExpanded && " [EXPANDED]"}
+                  </div>
 
-                  <p className="log-section-body">{section.body}</p>
+                  <p className="log-section-body">
+                    {isExpanded
+                      ? section.body
+                      : section.body.substring(0, 100) +
+                        (section.body.length > 100 ? "..." : "")}
+                  </p>
 
                   {section.expandable && (
                     <button
                       className="log-expand-btn"
                       onClick={() => toggleExpand(key)}
                     >
-                      {expanded[key] ? "▲ COLLAPSE" : "▼ EXPAND"}
+                      {isExpanded ? "▲ COLLAPSE" : "▼ EXPAND"}
                     </button>
                   )}
                 </div>
@@ -70,10 +95,16 @@ export default function LogsCenter({
         </div>
       ))}
 
-      <p className="older-logs-label">OLDER LOGS:</p>
+      <div className="older-logs-label">
+        OLDER LOGS: ({olderLogs.length} ENTRIES)
+      </div>
 
       {olderLogs.map((log: any, i: number) => (
-        <div key={i} className="older-log-row">
+        <div
+          key={i}
+          className="older-log-row"
+          onClick={() => console.log(`Loading log: ${log.title}`)}
+        >
           <span className="older-log-title">{log.title}</span>
           <span className="older-log-date">{log.date}</span>
         </div>

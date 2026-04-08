@@ -9,9 +9,15 @@ import SidebarLeft from "../reusable/SidebarLeft";
 import SidebarRight from "../reusable/SidebarRight";
 import BottomTabs from "../reusable/BottomTabs";
 import LogsCenter from "./LogsCenter";
-import "./logs.css"
+import "./logs.css";
+import "../reusable/reusable.css";
 
-const TABS = ["BEGINNING", "LOGS", "PROJECTS", "VISUALS", "ABOUT ME"];
+interface LogsProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+const TABS = ["BEGINNING", "LOGS", "PROJECTS", "VISUALS", "ABOUT ME",  "CONTACT"];
 
 const LOG_ENTRIES = [
   {
@@ -54,8 +60,7 @@ const OLDER_LOGS = [
   { title: "LOG ENTRY: BETA PROGRAM", date: "DATE: 2097.04.25" },
 ];
 
-export default function LogsDashboard() {
-  const [activeTab, setActiveTab] = useState("LOGS");
+export default function LogsDashboard({ activeTab, setActiveTab }: LogsProps) {
   const [soundEffects, setSoundEffects] = useState(true);
   const [music, setMusic] = useState(false);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -78,7 +83,6 @@ export default function LogsDashboard() {
 
         {/* CENTER */}
         <LogsCenter
-          ASCIIText={ASCIIText}
           entries={LOG_ENTRIES}
           olderLogs={OLDER_LOGS}
           expanded={expanded}
