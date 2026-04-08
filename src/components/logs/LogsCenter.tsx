@@ -1,6 +1,6 @@
 "use client";
 
-import DecryptedText from "@/src/react-bits/decrypted/DecryptedText";
+import DecryptedText from "@/src/react-components/decrypted/DecryptedText";
 import { useEffect, useState } from "react";
 
 export default function LogsCenter({

@@ -1,6 +1,6 @@
 "use client";
 
-import ASCIIText from "@/src/react-bits/ascii/ASCIIText";
+import ASCIIText from "@/src/react-components/ascii/ASCIIText";
 import React, { useState } from "react";
 
 // components

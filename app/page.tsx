@@ -7,6 +7,7 @@ import LogsDashboard from "@/src/components/logs/page";
 import ProjectsDashboard from "@/src/components/projects/page";
 import VisualsDashboard from "@/src/components/visuals/page";
 import AboutMePage from "@/src/components/about-me/page";
+import ContactPage from "@/src/components/contact/Contact";
 
 export default function Page() {
   const [showLanding, setShowLanding] = useState(true);
@@ -19,17 +20,36 @@ export default function Page() {
   const renderDashboard = () => {
     switch (activeTab) {
       case "BEGINNING":
-        return <HeroDashboard activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <HeroDashboard activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
       case "LOGS":
-        return <LogsDashboard activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <LogsDashboard activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
       case "PROJECTS":
-        return <ProjectsDashboard activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <ProjectsDashboard
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+        );
       case "VISUALS":
-        return <VisualsDashboard activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <VisualsDashboard activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
       case "ABOUT ME":
-        return <AboutMePage activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <AboutMePage activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
+      case "CONTACT":
+        return (
+          <ContactPage activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
       default:
-        return <HeroDashboard activeTab={activeTab} setActiveTab={setActiveTab} />;
+        return (
+          <HeroDashboard activeTab={activeTab} setActiveTab={setActiveTab} />
+        );
     }
   };
 

@@ -7,7 +7,7 @@ import SidebarRight from "../reusable/SidebarRight";
 import BottomTabs from "../reusable/BottomTabs";
 import "../reusable/reusable.css";
 import "./hero.css";
-import { GridScan } from "@/src/react-bits/grid-scan/GridScan";
+import { GridScan } from "@/src/react-components/grid-scan/GridScan";
 
 interface HeroDashboardProps {
   activeTab: string;
