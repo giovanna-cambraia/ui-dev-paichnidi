@@ -1,18 +1,23 @@
-// contexts/LanguageContext.tsx
-'use client';
+"use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { en } from '../types/en'; 
-import { es } from '../types/es'; 
-import { pt } from '../types/pt'; 
-import { Translations } from '../types/translations'; 
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { en } from "../types/en";
+import { es } from "../types/es";
+import { pt } from "../types/pt";
+import { Translations } from "../types/translations";
 
-type Language = 'en' | 'es' | 'pt';
+type Language = "en" | "es" | "pt";
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: Translations;
+  t: Translations; // This is correct now
   availableLanguages: { code: Language; name: string; flag: string }[];
 }
 
@@ -22,12 +27,14 @@ const translations = {
   pt,
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 };
@@ -36,11 +43,15 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({
+  children,
+}) => {
+  const [language, setLanguage] = useState<Language>("en");
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('portfolio-language') as Language;
+    const savedLanguage = localStorage.getItem(
+      "portfolio-language",
+    ) as Language;
     if (savedLanguage && translations[savedLanguage]) {
       setLanguage(savedLanguage);
     }
@@ -48,13 +59,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem('portfolio-language', lang);
+    localStorage.setItem("portfolio-language", lang);
   };
 
   const availableLanguages = [
-    { code: 'en' as const, name: 'ENGLISH', flag: '🇺🇸' },
-    { code: 'es' as const, name: 'ESPAÑOL', flag: '🇪🇸' },
-    { code: 'pt' as const, name: 'PORTUGUÊS', flag: '🇧🇷' },
+    { code: "en" as const, name: "ENGLISH", flag: "🇺🇸" },
+    { code: "es" as const, name: "ESPAÑOL", flag: "🇪🇸" },
+    { code: "pt" as const, name: "PORTUGUÊS", flag: "🇧🇷" },
   ];
 
   return (
