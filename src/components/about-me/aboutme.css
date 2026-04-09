@@ -141,9 +141,9 @@
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   background: radial-gradient(
     ellipse at center,
-    transparent 20%,
-    rgba(0, 0, 0, 0.4) 50%,
-    #000000 100%
+    transparent 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.6) 100%
   );
 }
 
@@ -851,6 +851,129 @@
     width: 4px;
     height: 4px;
   }
+}
+
+.tunnel-3d-layer canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.tunnel-fog,
+.tunnel-rings {
+  z-index: 2;
+}
+
+.station-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  width: 480px;
+  max-height: 60%;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  animation: fadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-inner,
+.topbar,
+.bottom-tabs {
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    filter 0.6s ease;
+}
+
+.dashboard.immersive .topbar,
+.dashboard.immersive .bottom-tabs,
+.dashboard.immersive .sidebar-left,
+.dashboard.immersive .sidebar-right {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+  filter: blur(6px);
+  pointer-events: none;
+  transition: all 0.6s ease;
+}
+
+.dashboard.immersive .center {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  pointer-events: auto !important;
+}
+
+.tunnel-3d-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  transform: scale(1.1);
+  transition:
+    opacity 0.8s ease,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.tunnel-3d-layer.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 3;
+}
+
+.enter-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #8b5cf6, black);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.enter-flash.active {
+  animation: flashIn 0.6s ease forwards;
+}
+
+.tunnel-frame[class*="enter-forward"] {
+  animation: enterForward 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tunnel-frame[class*="enter-back"] {
+  animation: enterBack 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes flashIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.dashboard.immersive .bottom-tabs-wrapper {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  filter: blur(6px);
+  pointer-events: none;
+  transition: all 0.6s ease;
 }
 
 @media (max-width: 480px) {
